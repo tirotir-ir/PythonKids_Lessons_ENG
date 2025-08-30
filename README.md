@@ -49,6 +49,8 @@ A classroom‑ready toolkit that combines **a huge one‑page Ultimate Python re
 - **Dashboard (EN)** → `PythonKids_CheatSheet_Dashboard_EN.html`  
 - **Logo** → `tirotir-logo.svg`
 
+- **Live Demo (GitHub Pages)**: https://tirotir-ir.github.io/PythonKids_Lessons_ENG/index.html
+
 ## Install & Run
 ```bash
 # 1) (Recommended) create a virtual environment
