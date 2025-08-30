@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TirotirPy — Combined Cheatsheet</title>
+<style>
+  :root { --txt:#0f172a; --bg:#f8fafc; }
+  * { box-sizing: border-box; }
+  body {
+    margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--txt);
+    background: radial-gradient(1200px 600px at 70% -10%, #a7f3d0 0, transparent 40%),
+                radial-gradient(1200px 800px at -10% 10%, #93c5fd 0, transparent 40%),
+                linear-gradient(180deg, #f8fafc, #eef2ff 60%);
+    min-height: 100vh;
+  }
+  header { display:flex; gap:14px; align-items:center; padding:20px 16px; }
+  header img { width: 140px; border-radius: 10px; box-shadow:0 10px 30px rgba(2,6,23,0.2);}
+  header .meta h1 { margin:0; font-size:26px; font-weight:900; }
+  header .meta p { margin:6px 0 0; opacity:0.8; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px 40px; }
+
+  .tabs { display:flex; gap:8px; padding:12px 0; flex-wrap:wrap; }
+  .tab-btn { padding:10px 14px; border:1px solid #cbd5e1; background:white; border-radius:999px; cursor:pointer; font-weight:600; }
+  .tab-btn.active { background:#111827; color:#fff; border-color:#111827; }
+
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  .toolbar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; padding: 8px 0 12px; }
+  input[type="search"] { flex:1 1 320px; padding:10px 12px; border:1px solid #cbd5e1; border-radius:12px; }
+  select { padding:10px 12px; border:1px solid #cbd5e1; border-radius:12px; background:white; }
+  .grid { display:grid; gap:14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .card { background:white; border:1px solid #e5e7eb; border-radius:16px; padding:14px; }
+  .tag { display:inline-block; background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:999px; font-size:12px; }
+  pre { background:#0b1220; color:#e5e7eb; padding:10px; border-radius:10px; overflow-x:auto; }
+  .output { background:#111827; color:#d1d5db; padding:10px; border-radius:10px; overflow-x:auto; margin-top:8px; }
+  .notes { margin-top:8px; font-size:13px; color:#334155; }
+  .output { background:#111827; color:#d1d5db; padding:10px; border-radius:10px; overflow-x:auto; margin-top:8px; }
+  .notes { margin-top:8px; font-size:13px; color:#334155; }
+  .copy-btn { margin-top:8px; padding:8px 12px; border-radius:10px; border:1px solid #cbd5e1; background:#f8fafc; cursor:pointer; }
+
+  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; padding: 12px; }
+  .linkcard { padding: 12px; border-radius: 14px; border: 1px solid #e5e7eb; background: #fff; }
+  .linkcard h4 { margin: 0 0 8px; }
+  .pill { display:inline-block; padding:6px 10px; background:#111827; color:#fff; border-radius: 10px; font-size: 12px; text-decoration:none; }
+
+  footer { padding:18px 0; text-align:left; opacity:0.75; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="tirotir-logo.svg" alt="Tirotir AI logo">
+      <div class="meta">
+        <h1>TirotirPy — Combined Cheatsheet</h1>
+        <p>Hoosh Masnooe — AI Training Center · <strong>tirotir.ir</strong> · Updated 2025-08-30</p>
+      </div>
+    </header>
+
+    <section class="glass">
+      <div class="links">
+        <div class="linkcard">
+          <h4>Part 1: Fundamentals (Lessons 1–12)</h4>
+          <p>Story-driven, perfect for starting out.</p>
+          <a class="pill" href="PythonKids_Part1_01-12_RTL_v2.ipynb" download>Download Notebook 1</a>
+        </div>
+        <div class="linkcard">
+          <h4>Part 2: Intermediate Concepts (13–24)</h4>
+          <p>Data structures & functions.</p>
+          <a class="pill" href="PythonKids_Part2_13-24_RTL_v2.ipynb" download>Download Notebook 2</a>
+        </div>
+        <div class="linkcard">
+          <h4>Part 3: Algorithms & Simulation (25–36)</h4>
+          <p>Problem solving, games, and modeling.</p>
+          <a class="pill" href="PythonKids_Part3_25-36_RTL_v2.ipynb" download>Download Notebook 3</a>
+        </div>
+      
+        <div class="linkcard">
+          <h4>Full Python TirotirPy</h4>
+          <p>Compact, rephrased 1‑page reference with search & copy.</p>
+          <a class="pill" href="index.html">Open TirotirPy</a>
+        </div>
+      </div>
+    </section>
+
+    </section>
+
+    </section>
+
+    <footer>© Tirotir AI — Hoosh Masnooe · tirotir.ir
+    <section id="panel-ultimate">
+      <div class="toolbar">
+        <input id="search-ult" type="search" placeholder="Search Ultimate (e.g., regex, pandas, turtle)">
+        <select id="filter-ult">
+          <option value="">All categories</option>
+          <option>Basics</option><option>Strings</option><option>Lists</option>
+          <option>Dict</option><option>Set</option><option>Tuple</option>
+          <option>Control Flow</option><option>Functions</option><option>Files</option>
+          <option>Datetime</option><option>Exceptions</option><option>OOP</option>
+          <option>Concurrency</option><option>Environment</option><option>Libraries</option>
+          <option>Advanced</option><option>Data Structures</option><option>Operators</option>
+        </select>
+      </div>
+      <section class="grid" id="cards-ult">
+        
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>print() power moves</h3>
+        <p>sep / end / flush / file parameters, and debug prints</p>
+      </div>
+      <pre><code>import sys, time
+print(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;, sep=&quot;-&quot;)             # A-B-C
+print(&quot;no newline&quot;, end=&quot;&quot;); print(&quot;...&quot;)
+print(&quot;progress&quot;, end=&quot;&quot;, flush=True); time.sleep(0.1)
+print(&quot;\nlog to stderr&quot;, file=sys.stderr)</code></pre>
+    <div class="notes"><strong>Notes:</strong> Use flush=True for live progress bars; send debug to stderr via file=sys.stderr.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>type() vs isinstance()</h3>
+        <p>Check runtime types safely (supports inheritance)</p>
+      </div>
+      <pre><code>class A: pass
+class B(A): pass
+x = B()
+print(type(x) is B)         # True
+print(isinstance(x, A))     # True (inherits A)</code></pre>
+    <pre class="output">True
+True</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>Assignment &amp; annotations</h3>
+        <p>Names bind to objects; annotations document intent (no runtime checks by default)</p>
+      </div>
+      <pre><code>count: int = 3
+name: str = &quot;Tirotir&quot;
+data: list[int] = [1,2,3]
+print(count, name, data)</code></pre>
+    <pre class="output">3 Tirotir [1, 2, 3]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Control Flow">
+      <div class="card-header">
+        <span class="tag">Control Flow</span>
+        <h3>while + else</h3>
+        <p>else runs only if the loop wasn&#x27;t broken by &#x27;break&#x27;</p>
+      </div>
+      <pre><code>n = 3
+while n &gt; 0:
+    print(&quot;tick&quot;, n)
+    n -= 1
+else:
+    print(&quot;done (no break)&quot;)</code></pre>
+    <pre class="output">tick 3
+tick 2
+tick 1
+done (no break)</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Control Flow">
+      <div class="card-header">
+        <span class="tag">Control Flow</span>
+        <h3>safe while loop</h3>
+        <p>Guard your loop to avoid infinite loops</p>
+      </div>
+      <pre><code>attempts = 0
+while True:
+    attempts += 1
+    if attempts &gt;= 3:
+        print(&quot;giving up&quot;)
+        break</code></pre>
+    <pre class="output">giving up</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Strings">
+      <div class="card-header">
+        <span class="tag">Strings</span>
+        <h3>Common ops</h3>
+        <p>membership, endswith/startswith, join/split/strip</p>
+      </div>
+      <pre><code>msg = &quot; Hello, world! &quot;
+print(&quot;world&quot; in msg)
+print(msg.strip())
+print(&quot;,&quot;.join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]))
+print(&quot;a,b,c&quot;.split(&quot;,&quot;))</code></pre>
+    <pre class="output">True
+Hello, world!
+a,b,c
+[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Strings">
+      <div class="card-header">
+        <span class="tag">Strings</span>
+        <h3>Regex basics (re)</h3>
+        <p>Search, groups, findall; use raw strings r&#x27;&#x27; for patterns</p>
+      </div>
+      <pre><code>import re
+m = re.search(r&quot;(\w+)@(\w+)\.(\w+)&quot;, &quot;mail: dev@tirotir.ir&quot;)
+print(m.group(0), m.group(1), m.group(2), m.group(3))
+print(re.findall(r&quot;\d+&quot;, &quot;a1 b22 c333&quot;))</code></pre>
+    <pre class="output">dev@tirotir.ir dev tirotir ir
+[&#x27;1&#x27;, &#x27;22&#x27;, &#x27;333&#x27;]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Strings">
+      <div class="card-header">
+        <span class="tag">Strings</span>
+        <h3>f-strings: width, precision, bases</h3>
+        <p>Align text, format numbers &amp; bases</p>
+      </div>
+      <pre><code>import math
+print(f&#x27;{&quot;hi&quot;:*^8}&#x27;)    # ***hi***
+print(f&#x27;{12345:010}&#x27;)   # 0000012345
+print(f&#x27;{math.pi:.3f}&#x27;) # 3.142
+print(f&#x27;{255:#x}&#x27;)      # 0xff</code></pre>
+    <pre class="output">***hi***
+0000012345
+3.142
+0xff</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Lists">
+      <div class="card-header">
+        <span class="tag">Lists</span>
+        <h3>Slicing &amp; strides</h3>
+        <p>Slices never mutate; strides pick every k-th element</p>
+      </div>
+      <pre><code>a = [0,1,2,3,4,5]
+print(a[1:4])   # [1,2,3]
+print(a[::2])   # [0,2,4]
+print(a[::-1])  # reversed</code></pre>
+    <pre class="output">[1, 2, 3]
+[0, 2, 4]
+[5, 4, 3, 2, 1, 0]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Lists">
+      <div class="card-header">
+        <span class="tag">Lists</span>
+        <h3>List comprehension</h3>
+        <p>Inline loops &amp; conditions</p>
+      </div>
+      <pre><code>nums = [1,2,3,4,5,6]
+evens = [x for x in nums if x%2==0]
+pairs = [(x,x*x) for x in nums]
+print(evens)
+print(pairs)</code></pre>
+    <pre class="output">[2, 4, 6]
+[(1, 1), (2, 4), (3, 9), (4, 16), (5, 25), (6, 36)]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Dict">
+      <div class="card-header">
+        <span class="tag">Dict</span>
+        <h3>Core patterns</h3>
+        <p>get, update, dict comprehension</p>
+      </div>
+      <pre><code>d = {&quot;a&quot;:1}
+print(d.get(&quot;b&quot;, 0))    # 0 default
+d.update({&quot;b&quot;:2})
+inv = {v:k for k,v in d.items()}
+print(d, inv)</code></pre>
+    <pre class="output">0
+{&#x27;a&#x27;: 1, &#x27;b&#x27;: 2} {1: &#x27;a&#x27;, 2: &#x27;b&#x27;}</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Set">
+      <div class="card-header">
+        <span class="tag">Set</span>
+        <h3>Unique + fast membership</h3>
+        <p>Use set ops: union, intersection, difference</p>
+      </div>
+      <pre><code>s1 = {1,2,3}; s2 = {3,4,5}
+print(s1 | s2)  # union
+print(s1 &amp; s2)  # intersection
+print(s1 - s2)  # difference</code></pre>
+    <pre class="output">{1, 2, 3, 4, 5}
+{3}
+{1, 2}</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Tuple">
+      <div class="card-header">
+        <span class="tag">Tuple</span>
+        <h3>Packing/unpacking</h3>
+        <p>Multiple assignment and ignoring values</p>
+      </div>
+      <pre><code>pt = (3,4)
+x, y = pt
+a, _, b = (10,20,30)
+print(x, y, a, b)</code></pre>
+    <pre class="output">3 4 10 30</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Functions">
+      <div class="card-header">
+        <span class="tag">Functions</span>
+        <h3>*args / **kwargs</h3>
+        <p>Pack extra positional and keyword args</p>
+      </div>
+      <pre><code>def demo(*args, **kwargs):
+    print(args, kwargs)
+
+demo(1,2, a=3, b=4)</code></pre>
+    <pre class="output">(1, 2) {&#x27;a&#x27;: 3, &#x27;b&#x27;: 4}</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Functions">
+      <div class="card-header">
+        <span class="tag">Functions</span>
+        <h3>Lambdas &amp; map/filter</h3>
+        <p>Anonymous functions for quick transforms</p>
+      </div>
+      <pre><code>nums = [1,2,3,4]
+evens = list(filter(lambda x:x%2==0, nums))
+squares = list(map(lambda x:x*x, nums))
+print(evens, squares)</code></pre>
+    <pre class="output">[2, 4] [1, 4, 9, 16]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Functions">
+      <div class="card-header">
+        <span class="tag">Functions</span>
+        <h3>itertools gems</h3>
+        <p>count, cycle, islice for efficient iteration</p>
+      </div>
+      <pre><code>from itertools import count, islice
+print(list(islice(count(10,2), 5)))  # 10,12,14,16,18</code></pre>
+    <pre class="output">[10, 12, 14, 16, 18]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Functions">
+      <div class="card-header">
+        <span class="tag">Functions</span>
+        <h3>functools.lru_cache</h3>
+        <p>Memoize pure functions for speed</p>
+      </div>
+      <pre><code>from functools import lru_cache
+@lru_cache(maxsize=128)
+def fib(n):
+    return n if n&lt;2 else fib(n-1)+fib(n-2)
+print(fib(20))</code></pre>
+    <pre class="output">6765</pre><div class="notes"><strong>Notes:</strong> Use lru_cache for expensive recursive calls.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Files">
+      <div class="card-header">
+        <span class="tag">Files</span>
+        <h3>pathlib for paths</h3>
+        <p>Object-oriented paths (preferred over os.path)</p>
+      </div>
+      <pre><code>from pathlib import Path
+p = Path(&#x27;data&#x27;) / &#x27;file.txt&#x27;
+print(p.parent, p.name, p.suffix)</code></pre>
+    <pre class="output">data file.txt .txt</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Files">
+      <div class="card-header">
+        <span class="tag">Files</span>
+        <h3>CSV quick read/write</h3>
+        <p>Use csv module for simple tables</p>
+      </div>
+      <pre><code>import csv, io
+buf = io.StringIO()
+writer = csv.writer(buf)
+writer.writerow([&quot;name&quot;,&quot;age&quot;])
+writer.writerow([&quot;Ali&quot;,12])
+print(buf.getvalue().strip())</code></pre>
+    <pre class="output">name,age
+Ali,12</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Files">
+      <div class="card-header">
+        <span class="tag">Files</span>
+        <h3>JSON read/write</h3>
+        <p>Serialize Python dicts</p>
+      </div>
+      <pre><code>import json
+data = {&quot;aa&quot;:12, &quot;bb&quot;:21}
+s = json.dumps(data)
+print(json.loads(s)[&quot;aa&quot;])</code></pre>
+    <pre class="output">12</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Datetime">
+      <div class="card-header">
+        <span class="tag">Datetime</span>
+        <h3>datetime &amp; timedelta</h3>
+        <p>Arithmetic and formatting</p>
+      </div>
+      <pre><code>from datetime import datetime, timedelta
+now = datetime(2025,8,30,12,0,0)
+tomorrow = now + timedelta(days=1)
+print(now.strftime(&quot;%Y-%m-%d&quot;), tomorrow.date())</code></pre>
+    <pre class="output">2025-08-30 2025-08-31</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Exceptions">
+      <div class="card-header">
+        <span class="tag">Exceptions</span>
+        <h3>try/except/else/finally</h3>
+        <p>Structure robust error handling</p>
+      </div>
+      <pre><code>try:
+    x = int(&quot;12a&quot;)
+except ValueError as e:
+    print(&quot;bad:&quot;, e)
+else:
+    print(&quot;ok&quot;)
+finally:
+    print(&quot;always&quot;)</code></pre>
+    <pre class="output">bad: invalid literal for int() with base 10: &#x27;12a&#x27;
+always</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="OOP">
+      <div class="card-header">
+        <span class="tag">OOP</span>
+        <h3>Class + dunder methods</h3>
+        <p>__init__, __repr__ for readable objects</p>
+      </div>
+      <pre><code>class Box:
+    def __init__(self, items): self.items = items
+    def __repr__(self): return f&quot;Box({self.items})&quot;
+print(Box([1,2,3]))</code></pre>
+    <pre class="output">Box([1, 2, 3])</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="OOP">
+      <div class="card-header">
+        <span class="tag">OOP</span>
+        <h3>@dataclass (from dataclasses)</h3>
+        <p>Removes boilerplate for simple data holders</p>
+      </div>
+      <pre><code>from dataclasses import dataclass
+@dataclass
+class User:
+    name: str
+    age: int = 0
+print(User(&quot;Sara&quot;, 11))</code></pre>
+    <pre class="output">User(name=&#x27;Sara&#x27;, age=11)</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Concurrency">
+      <div class="card-header">
+        <span class="tag">Concurrency</span>
+        <h3>threading basics</h3>
+        <p>Run a simple task in a background thread</p>
+      </div>
+      <pre><code>import threading, time
+def task(n): time.sleep(0.1); print(&quot;done&quot;, n)
+t = threading.Thread(target=task, args=(1,)); t.start(); t.join()</code></pre>
+    <pre class="output">done 1</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Environment">
+      <div class="card-header">
+        <span class="tag">Environment</span>
+        <h3>venv + pip</h3>
+        <p>Isolated environment for projects</p>
+      </div>
+      <pre><code># create &amp; activate (bash)
+python -m venv .venv
+source .venv/bin/activate
+pip install requests</code></pre>
+    <div class="notes"><strong>Notes:</strong> On Windows: .venv\Scripts\activate</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>requests — HTTP client</h3>
+        <p>Fetch JSON from an API</p>
+      </div>
+      <pre><code>import requests
+r = requests.get(&quot;https://httpbin.org/json&quot;, timeout=5)
+print(r.status_code, bool(r.json()))</code></pre>
+    <pre class="output">200 True</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>colorama — terminal colors</h3>
+        <p>Windows-friendly ANSI colors</p>
+      </div>
+      <pre><code>from colorama import init, Fore, Style
+init(autoreset=True)
+print(Fore.GREEN + &quot;OK&quot;, Style.BRIGHT + Fore.RED + &quot;ERROR&quot;)</code></pre>
+    <pre class="output">OK ERROR</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>termcolor — quick color</h3>
+        <p>Small helper for colored text</p>
+      </div>
+      <pre><code>from termcolor import colored, cprint
+print(colored(&quot;hello&quot;,&quot;yellow&quot;,&quot;on_blue&quot;, attrs=[&quot;bold&quot;]))
+cprint(&quot;warning&quot;,&quot;red&quot;)</code></pre>
+    <pre class="output">hello
+warning</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pyttsx3 — offline TTS</h3>
+        <p>Speak a sentence (desktop)</p>
+      </div>
+      <pre><code>import pyttsx3
+engine = pyttsx3.init()
+engine.say(&quot;Hello from Python!&quot;)
+engine.runAndWait()</code></pre>
+    <div class="notes"><strong>Notes:</strong> Needs desktop audio; no output in headless servers.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>turtle — simple graphics</h3>
+        <p>Draw a square (GUI required)</p>
+      </div>
+      <pre><code>import turtle as t
+for _ in range(4):
+    t.forward(80); t.left(90)
+t.done()</code></pre>
+    <div class="notes"><strong>Notes:</strong> Requires a GUI; shows a separate window.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>tkinter — tiny GUI</h3>
+        <p>Create a window with a label and a button</p>
+      </div>
+      <pre><code>import tkinter as tk
+root = tk.Tk()
+tk.Label(root, text=&quot;Hello, GUI!&quot;).pack()
+tk.Button(root, text=&quot;Close&quot;, command=root.destroy).pack()
+root.mainloop()</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>numpy — arrays &amp; math</h3>
+        <p>Vectorized numeric arrays</p>
+      </div>
+      <pre><code>import numpy as np
+a = np.array([1,2,3])
+print(a*10, a.mean())</code></pre>
+    <pre class="output">[10 20 30] 2.0</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pandas — dataframes</h3>
+        <p>Tabular data manipulation</p>
+      </div>
+      <pre><code>import pandas as pd
+df = pd.DataFrame({&quot;name&quot;:[&quot;Ali&quot;,&quot;Sara&quot;],&quot;age&quot;:[12,11]})
+print(df.shape)
+print(df[&quot;age&quot;].mean())</code></pre>
+    <pre class="output">(2, 2)
+11.5</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>matplotlib — plotting</h3>
+        <p>Simple line plot</p>
+      </div>
+      <pre><code>import matplotlib.pyplot as plt
+plt.plot([1,2,3],[2,4,3])
+plt.title(&quot;Demo&quot;)
+plt.xlabel(&quot;x&quot;); plt.ylabel(&quot;y&quot;)
+plt.show()</code></pre>
+    <div class="notes"><strong>Notes:</strong> Opens a plot window in desktop; in notebooks it renders inline.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Advanced">
+      <div class="card-header">
+        <span class="tag">Advanced</span>
+        <h3>enumerate / zip</h3>
+        <p>Index your loop; iterate in parallel</p>
+      </div>
+      <pre><code>items = [&quot;dog&quot;,&quot;cat&quot;]
+for i, x in enumerate(items, 1):
+    print(i, x)
+for a,b in zip([1,2],[10,20]):
+    print(a,b)</code></pre>
+    <pre class="output">1 dog
+2 cat
+1 10
+2 20</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Advanced">
+      <div class="card-header">
+        <span class="tag">Advanced</span>
+        <h3>sorted with key</h3>
+        <p>Custom sort (by length, by field)</p>
+      </div>
+      <pre><code>words = [&quot;aaa&quot;,&quot;b&quot;,&quot;cc&quot;]
+print(sorted(words, key=len))</code></pre>
+    <pre class="output">[&#x27;b&#x27;, &#x27;cc&#x27;, &#x27;aaa&#x27;]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+
+    <div class="card" data-cat="Advanced">
+      <div class="card-header">
+        <span class="tag">Advanced</span>
+        <h3>dict sorting</h3>
+        <p>Sort items by value descending</p>
+      </div>
+      <pre><code>d = {&quot;a&quot;:3,&quot;b&quot;:1,&quot;c&quot;:2}
+print(sorted(d.items(), key=lambda kv: kv[1], reverse=True))</code></pre>
+    <pre class="output">[(&#x27;a&#x27;, 3), (&#x27;c&#x27;, 2), (&#x27;b&#x27;, 1)]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      
+
+    <div class="card" data-cat="Packaging">
+      <div class="card-header">
+        <span class="tag">Packaging</span>
+        <h3>PyInstaller — make executables</h3>
+        <p>Bundle your Python app into a single EXE/app (Windows/macOS/Linux).</p>
+      </div>
+      <pre><code># 1) Install inside a fresh virtual env
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
+pip install --upgrade pip pyinstaller
+
+# 2) Run for a simple script (one-file build)
+pyinstaller --onefile app.py
+
+# Common options
+# --noconsole (GUI apps), --icon=app.ico (or .icns on macOS)
+# --name MyApp, --hidden-import pkg.sub, --add-data
+
+# Add data files (NOTE: different separators)
+#   Windows -&gt; &quot;SRC;DEST&quot;    macOS/Linux -&gt; &quot;SRC:DEST&quot;
+# Example: include a &#x27;assets&#x27; folder into &#x27;assets&#x27; inside the bundle
+# Windows:
+pyinstaller --onefile --add-data &quot;assets;assets&quot; app.py
+# macOS/Linux:
+pyinstaller --onefile --add-data &quot;assets:assets&quot; app.py
+
+# 3) Find your build
+#   dist/MyApp (folder) or dist/MyApp.exe (onefile .exe)</code></pre>
+    <div class="notes"><strong>Notes:</strong> If antivirus flags the EXE, sign it or zip it. For Tkinter/turtle, prefer --onefile for small apps; test on a clean machine.</div><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>requests</h3>
+        <p>HTTP client · pip install requests</p>
+      </div>
+      <pre><code>import requests
+r = requests.get(&quot;https://httpbin.org/json&quot;, timeout=5)
+print(r.status_code)</code></pre>
+    <pre class="output">200</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>httpx</h3>
+        <p>Async/sync HTTP · pip install httpx</p>
+      </div>
+      <pre><code>import httpx
+with httpx.Client() as c:
+    print(c.get(&quot;https://httpbin.org/get&quot;).status_code)</code></pre>
+    <pre class="output">200</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>aiohttp</h3>
+        <p>Async HTTP · pip install aiohttp</p>
+      </div>
+      <pre><code>import asyncio, aiohttp
+async def main():
+    async with aiohttp.ClientSession() as s:
+        async with s.get(&quot;https://httpbin.org/get&quot;) as r:
+            print(r.status)
+asyncio.run(main())</code></pre>
+    <pre class="output">200</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>websockets</h3>
+        <p>WebSocket client · pip install websockets</p>
+      </div>
+      <pre><code># async websocket echo (server required)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>numpy</h3>
+        <p>Arrays &amp; vector math · pip install numpy</p>
+      </div>
+      <pre><code>import numpy as np
+a = np.array([1,2,3]); print(a*10)</code></pre>
+    <pre class="output">[10 20 30]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pandas</h3>
+        <p>DataFrames · pip install pandas</p>
+      </div>
+      <pre><code>import pandas as pd
+df = pd.DataFrame({&quot;x&quot;:[1,2],&quot;y&quot;:[3,4]})
+print(df.shape)</code></pre>
+    <pre class="output">(2, 2)</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>matplotlib</h3>
+        <p>Plotting · pip install matplotlib</p>
+      </div>
+      <pre><code>import matplotlib.pyplot as plt
+plt.plot([1,2,3],[2,4,3]); plt.show()</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>seaborn</h3>
+        <p>Stat plots · pip install seaborn</p>
+      </div>
+      <pre><code>import seaborn as sns, pandas as pd
+sns.lineplot(data=pd.DataFrame({&quot;x&quot;:[1,2,3],&quot;y&quot;:[2,4,3]}), x=&quot;x&quot;, y=&quot;y&quot;)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>scipy</h3>
+        <p>Scientific · pip install scipy</p>
+      </div>
+      <pre><code>from scipy import stats
+print(round(stats.norm.cdf(0),2))</code></pre>
+    <pre class="output">0.5</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>scikit-learn</h3>
+        <p>ML toolkit · pip install scikit-learn</p>
+      </div>
+      <pre><code>from sklearn.linear_model import LinearRegression as LR
+import numpy as np
+X = np.array([[1],[2],[3]]); y = [2,4,6]
+print(LR().fit(X,y).predict([[4]])[0])</code></pre>
+    <pre class="output">8.0</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>sympy</h3>
+        <p>Symbolic math · pip install sympy</p>
+      </div>
+      <pre><code>import sympy as sp
+x=sp.symbols(&#x27;x&#x27;); print(sp.solve(sp.Eq(x**2-4,0)))</code></pre>
+    <pre class="output">[-2, 2]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>statsmodels</h3>
+        <p>Stats · pip install statsmodels</p>
+      </div>
+      <pre><code>import statsmodels.api as sm
+print(sm.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pillow</h3>
+        <p>Imaging · pip install pillow</p>
+      </div>
+      <pre><code>from PIL import Image
+print(Image.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>opencv-python</h3>
+        <p>Computer vision · pip install opencv-python</p>
+      </div>
+      <pre><code>import cv2; print(cv2.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pydub</h3>
+        <p>Audio · pip install pydub</p>
+      </div>
+      <pre><code>from pydub import AudioSegment
+print(len(AudioSegment.silent(1000)))</code></pre>
+    <pre class="output">1000</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pygame</h3>
+        <p>Games · pip install pygame</p>
+      </div>
+      <pre><code>import pygame; print(pygame.ver)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pyttsx3</h3>
+        <p>Text-to-speech · pip install pyttsx3</p>
+      </div>
+      <pre><code>import pyttsx3; pyttsx3.init().say(&quot;Hi&quot;); print(&quot;ok&quot;)</code></pre>
+    <pre class="output">ok</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>gTTS</h3>
+        <p>Google TTS · pip install gTTS</p>
+      </div>
+      <pre><code>from gtts import gTTS; print(&quot;ok&quot;)</code></pre>
+    <pre class="output">ok</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>SpeechRecognition</h3>
+        <p>Speech-to-text · pip install SpeechRecognition</p>
+      </div>
+      <pre><code>import speech_recognition as sr; print(sr.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pyserial</h3>
+        <p>Serial ports · pip install pyserial</p>
+      </div>
+      <pre><code>import serial; print(serial.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pyautogui</h3>
+        <p>GUI automation · pip install pyautogui</p>
+      </div>
+      <pre><code>import pyautogui; print(pyautogui.size())</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>selenium</h3>
+        <p>Browser automation · pip install selenium</p>
+      </div>
+      <pre><code>from selenium import webdriver
+print(&quot;install driver separately&quot;)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>beautifulsoup4</h3>
+        <p>HTML parse · pip install beautifulsoup4</p>
+      </div>
+      <pre><code>from bs4 import BeautifulSoup as BS
+print(BS(&quot;&lt;p&gt;hi&lt;/p&gt;&quot;,&quot;html.parser&quot;).p.text)</code></pre>
+    <pre class="output">hi</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>lxml</h3>
+        <p>XML/HTML parse · pip install lxml</p>
+      </div>
+      <pre><code>from lxml import etree; print(&quot;ok&quot;)</code></pre>
+    <pre class="output">ok</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>scrapy</h3>
+        <p>Web scraping · pip install scrapy</p>
+      </div>
+      <pre><code>import scrapy; print(scrapy.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>fastapi</h3>
+        <p>Web APIs · pip install fastapi uvicorn</p>
+      </div>
+      <pre><code>from fastapi import FastAPI
+app = FastAPI()
+@app.get(&quot;/&quot;)
+async def root(): return {&quot;ok&quot;:True}</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>flask</h3>
+        <p>Micro web · pip install flask</p>
+      </div>
+      <pre><code>from flask import Flask; app=Flask(__name__)
+@app.get(&quot;/&quot;)
+def hi(): return &quot;hi&quot; </code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>django</h3>
+        <p>Full-stack web · pip install django</p>
+      </div>
+      <pre><code>import django; print(django.get_version())</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>sqlalchemy</h3>
+        <p>ORM · pip install sqlalchemy</p>
+      </div>
+      <pre><code>from sqlalchemy import create_engine
+engine = create_engine(&quot;sqlite:///db.sqlite3&quot;)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>alembic</h3>
+        <p>Migrations · pip install alembic</p>
+      </div>
+      <pre><code>import alembic; print(alembic.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>psycopg2-binary</h3>
+        <p>Postgres driver · pip install psycopg2-binary</p>
+      </div>
+      <pre><code>import psycopg2; print(&quot;ok&quot;)</code></pre>
+    <pre class="output">ok</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pymysql</h3>
+        <p>MySQL driver · pip install pymysql</p>
+      </div>
+      <pre><code>import pymysql; print(&quot;ok&quot;)</code></pre>
+    <pre class="output">ok</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>redis</h3>
+        <p>Redis client · pip install redis</p>
+      </div>
+      <pre><code>import redis; print(redis.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>celery</h3>
+        <p>Task queue · pip install celery</p>
+      </div>
+      <pre><code>import celery; print(celery.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>kafka-python</h3>
+        <p>Apache Kafka · pip install kafka-python</p>
+      </div>
+      <pre><code>from kafka import KafkaProducer</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pydantic</h3>
+        <p>Validation · pip install pydantic</p>
+      </div>
+      <pre><code>from pydantic import BaseModel
+class User(BaseModel): name:str; age:int</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>marshmallow</h3>
+        <p>Serialization · pip install marshmallow</p>
+      </div>
+      <pre><code>from marshmallow import Schema, fields
+class S(Schema): n=fields.Int()</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>attrs</h3>
+        <p>Data classes · pip install attrs</p>
+      </div>
+      <pre><code>import attr; @attr.define
+class User: name:str</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>click</h3>
+        <p>CLI builder · pip install click</p>
+      </div>
+      <pre><code>import click
+@click.command()
+@click.option(&quot;--n&quot;, default=1)
+def main(n): print(n)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>typer</h3>
+        <p>CLI builder 2 · pip install typer</p>
+      </div>
+      <pre><code>import typer
+app = typer.Typer()
+@app.command()
+def hi(n:int=1): print(n)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>rich</h3>
+        <p>Rich text · pip install rich</p>
+      </div>
+      <pre><code>from rich import print
+print(&quot;[bold magenta]Hello[/]&quot;)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>loguru</h3>
+        <p>Logging · pip install loguru</p>
+      </div>
+      <pre><code>from loguru import logger
+logger.info(&quot;hi&quot;)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>tqdm</h3>
+        <p>Progress bars · pip install tqdm</p>
+      </div>
+      <pre><code>from tqdm import trange
+for _ in trange(3): pass</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>schedule</h3>
+        <p>Cron-like · pip install schedule</p>
+      </div>
+      <pre><code>import schedule, time
+schedule.every().day.at(&quot;10:00&quot;).do(lambda: print(&quot;hi&quot;))</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>APScheduler</h3>
+        <p>Advanced scheduling · pip install apscheduler</p>
+      </div>
+      <pre><code>from apscheduler.schedulers.background import BackgroundScheduler</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>paramiko</h3>
+        <p>SSH · pip install paramiko</p>
+      </div>
+      <pre><code>import paramiko; print(paramiko.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>fabric</h3>
+        <p>Deployment · pip install fabric</p>
+      </div>
+      <pre><code>import fabric; print(fabric.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>boto3</h3>
+        <p>AWS SDK · pip install boto3</p>
+      </div>
+      <pre><code>import boto3; print(boto3.__version__)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>google-cloud-storage</h3>
+        <p>GCP Storage · pip install google-cloud-storage</p>
+      </div>
+      <pre><code>from google.cloud import storage</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>azure-storage-blob</h3>
+        <p>Azure Blob · pip install azure-storage-blob</p>
+      </div>
+      <pre><code>from azure.storage.blob import BlobServiceClient</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>pytest</h3>
+        <p>Testing · pip install pytest</p>
+      </div>
+      <pre><code>def test_sum(): assert 1+1==2</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Libraries">
+      <div class="card-header">
+        <span class="tag">Libraries</span>
+        <h3>hypothesis</h3>
+        <p>Property tests · pip install hypothesis</p>
+      </div>
+      <pre><code>from hypothesis import given, strategies as st
+@given(st.integers())
+def test_any(n): assert n==n</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>F-string debug</h3>
+        <p>f&#x27;{var=}&#x27; shows name and value</p>
+      </div>
+      <pre><code>x=42; print(f&quot;{x=}&quot;)</code></pre>
+    <pre class="output">x=42</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Enumerate start</h3>
+        <p>Start index at 1 (or any)</p>
+      </div>
+      <pre><code>for i,x in enumerate([&quot;a&quot;,&quot;b&quot;], start=1): print(i,x)</code></pre>
+    <pre class="output">1 a
+2 b</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Transpose with zip</h3>
+        <p>Turn rows→cols via zip(*)</p>
+      </div>
+      <pre><code>m = [(1,2,3),(4,5,6)]; print(list(zip(*m)))</code></pre>
+    <pre class="output">[(1, 4), (2, 5), (3, 6)]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Star unpacking</h3>
+        <p>Collect the rest</p>
+      </div>
+      <pre><code>a,*mid,b = [1,2,3,4,5]; print(mid)</code></pre>
+    <pre class="output">[2, 3, 4]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Count with dict.get</h3>
+        <p>Safe increment</p>
+      </div>
+      <pre><code>d={}; k=&quot;a&quot;; d[k]=d.get(k,0)+1; print(d)</code></pre>
+    <pre class="output">{&#x27;a&#x27;: 1}</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Grouping with setdefault</h3>
+        <p>Initialize once</p>
+      </div>
+      <pre><code>g={}; for w in [&quot;a&quot;,&quot;b&quot;,&quot;a&quot;]: g.setdefault(w,[]).append(1); print(g)</code></pre>
+    <pre class="output">{&#x27;a&#x27;:[1,1],&#x27;b&#x27;:[1]}</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>any/all</h3>
+        <p>Check booleans fast</p>
+      </div>
+      <pre><code>print(any([0,1,0]), all([1,1,1]))</code></pre>
+    <pre class="output">True True</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>sorted key</h3>
+        <p>Sort by length/field</p>
+      </div>
+      <pre><code>print(sorted([&quot;aaa&quot;,&quot;b&quot;,&quot;cc&quot;], key=len))</code></pre>
+    <pre class="output">[&#x27;b&#x27;,&#x27;cc&#x27;,&#x27;aaa&#x27;]</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Pathlib read/write</h3>
+        <p>Compact file I/O</p>
+      </div>
+      <pre><code>from pathlib import Path; p=Path(&quot;t.txt&quot;); p.write_text(&quot;hi&quot;); print(p.read_text())</code></pre>
+    <pre class="output">hi</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>suppress</h3>
+        <p>Ignore certain errors</p>
+      </div>
+      <pre><code>from contextlib import suppress
+with suppress(FileNotFoundError): open(&quot;nope&quot;).read()</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>groupby</h3>
+        <p>Group adjacent items (sorted first)</p>
+      </div>
+      <pre><code>from itertools import groupby
+for k,g in groupby(sorted(&quot;banana&quot;)): print(k,len(list(g)))</code></pre>
+    <pre class="output">a 3
+b 1
+n 2</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>timeit</h3>
+        <p>Quick benchmarks</p>
+      </div>
+      <pre><code>import timeit; print(timeit.timeit(&quot;sum(range(100))&quot;, number=1000))</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Walrus :=</h3>
+        <p>Assign inside expressions</p>
+      </div>
+      <pre><code>while (line := input()) != &quot;&quot;: print(line)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Comprehensions</h3>
+        <p>Condensed list/dict/set</p>
+      </div>
+      <pre><code>squares = {x:x*x for x in range(5)}; print(squares[3])</code></pre>
+    <pre class="output">9</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Specific except</h3>
+        <p>Catch what you mean</p>
+      </div>
+      <pre><code>try: int(&quot;x&quot;)
+except ValueError: print(&quot;bad&quot;)</code></pre>
+    <pre class="output">bad</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>dataclass</h3>
+        <p>Less boilerplate</p>
+      </div>
+      <pre><code>from dataclasses import dataclass
+@dataclass
+class User: name:str; age:int=0
+print(User(&quot;A&quot;,1))</code></pre>
+    <pre class="output">User(name=&#x27;A&#x27;, age=1)</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>typing hints</h3>
+        <p>Better IDE help</p>
+      </div>
+      <pre><code>from typing import List
+nums: List[int] = [1,2,3]</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>argparse</h3>
+        <p>Nice CLI args</p>
+      </div>
+      <pre><code>import argparse
+p=argparse.ArgumentParser(); p.add_argument(&quot;--n&quot;, type=int);
+print(p.parse_args([&quot;--n&quot;,&quot;3&quot;]).n)</code></pre>
+    <pre class="output">3</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>Better printing</h3>
+        <p>Join + sep</p>
+      </div>
+      <pre><code>print(&quot;,&quot;.join([&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]))
+print(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;, sep=&quot;-&quot;)</code></pre>
+    <pre class="output">a,b,c
+A-B-C</pre><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+    <div class="card" data-cat="Hot Tips">
+      <div class="card-header">
+        <span class="tag">Hot Tips</span>
+        <h3>stderr logs</h3>
+        <p>Separate logs from output</p>
+      </div>
+      <pre><code>import sys
+print(&quot;LOG&quot;, file=sys.stderr)</code></pre>
+    <button class="copy-btn" onclick="copyCode(this)">Copy</button></div></section>
+    </section>
+</footer>
+  </div>
+
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = {
+    kids: document.getElementById('panel-kids'),
+    quickref: document.getElementById('panel-quickref'),
+    ultimate: document.getElementById('panel-ultimate')
+  };
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.values(panels).forEach(p => p.classList.remove('active'));
+      const key = btn.dataset.tab;
+      panels[key].classList.add('active');
+    });
+  });
+
+  // Filtering logic (scoped)
+  function makeFilter(searchId, selectId, containerId) {
+    const q = document.getElementById(searchId);
+    const f = document.getElementById(selectId);
+    const cards = Array.from(document.querySelectorAll('#' + containerId + ' .card'));
+    function apply() {
+      const text = (q.value || '').toLowerCase();
+      const cat = (f.value || '').toLowerCase();
+      cards.forEach(c => {
+        const hay = (c.innerText || '').toLowerCase();
+        const okText = !text || hay.includes(text);
+        const okCat = !cat || (c.dataset.cat || '').toLowerCase() === cat;
+        c.style.display = (okText && okCat) ? '' : 'none';
+      });
+    }
+    q.addEventListener('input', apply);
+    f.addEventListener('change', apply);
+  }
+  makeFilter('search-ult','filter-ult','cards-ult');
+
+  // Copy buttons
+  function wireCopyButtons(scopeId) {
+    document.getElementById(scopeId).addEventListener('click', (e) => {
+      if (e.target.classList.contains('copy-btn')) {
+        const code = e.target.parentElement.querySelector('pre code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          e.target.innerText = 'Copied!';
+          setTimeout(() => e.target.innerText = 'Copy', 1200);
+        });
+      }
+    });
+  }
+  wireCopyButtons('panel-kids');
+  wireCopyButtons('panel-quickref');
+</script>
+</body>
+</html>

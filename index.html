@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Python for Kids — Tirotir AI</title>
+<style>
+  :root {
+    --txt: #0f172a; --bg:#f8fafc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--txt); background: var(--bg);
+    background: radial-gradient(1200px 600px at 70% -10%, #a7f3d0 0, transparent 40%),
+                radial-gradient(1200px 800px at -10% 10%, #93c5fd 0, transparent 40%),
+                linear-gradient(180deg, #f8fafc, #eef2ff 60%);
+    min-height: 100vh;
+  }
+  header { padding: 28px 20px 10px; text-align: left; display:flex; gap:16px; align-items:center; }
+  header img { width: 160px; height:auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(2,6,23,0.2);}
+  header h1 { margin: 0; font-size: 28px; font-weight: 900; }
+  header p { margin: 6px 0 0; opacity: 0.8; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 10px 16px 40px; }
+  .glass { background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.06); border-radius: 18px; box-shadow: 0 10px 30px rgba(2,6,23,0.12); backdrop-filter: blur(8px); }
+  .grid { display: grid; gap: 16px; }
+  .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { padding: 14px; border-radius: 16px; background: white; border: 1px solid #e5e7eb; }
+  .card h3 { margin: 6px 0 4px; font-size: 18px; font-weight: 800; }
+  .card p { margin: 0 0 8px; color: #334155; font-size: 14px; }
+  .tag { display: inline-block; background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+  pre { background: #0b1220; color: #e5e7eb; padding: 10px; border-radius: 10px; overflow-x: auto; }
+  .copy-btn { margin-top: 8px; padding: 8px 12px; border-radius: 10px; border: 1px solid #cbd5e1; background: #f8fafc; cursor: pointer; }
+  .toolbar { display:flex; gap:8px; align-items:center; padding:12px; }
+  input[type="search"] { flex:1 1 260px; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 12px; }
+  select { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 12px; background: white; }
+  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; padding: 12px; }
+  .linkcard { padding: 12px; border-radius: 14px; border: 1px solid #e5e7eb; background: #fff; }
+  .linkcard h4 { margin: 0 0 8px; }
+  .pill { display:inline-block; padding:6px 10px; background:#111827; color:#fff; border-radius: 10px; font-size: 12px; text-decoration:none; }
+  footer { text-align:left; padding: 20px; opacity: 0.7; font-size: 13px; }
+</style>
+</head>
+<body>
+  <header class="wrap">
+    <img src="tirotir-logo.svg" alt="Tirotir AI logo">
+    <div>
+      <h1>Python for Kids — Story-based Lessons (1–36)</h1>
+      <p>Hoosh Masnooe — AI Training Center · <strong>tirotir.ir</strong> · Version 2025-08-30</p>
+    </div>
+  </header>
+
+  <div class="wrap grid" style="gap:24px">
+    <section class="glass">
+      <div class="links">
+        <div class="linkcard">
+          <h4>Part 1: Fundamentals (Lessons 1–12)</h4>
+          <p>Story-driven, perfect for starting out.</p>
+          <a class="pill" href="PythonKids_Part1_01-12_RTL_v2.ipynb" download>Download Notebook 1</a>
+        </div>
+        <div class="linkcard">
+          <h4>Part 2: Intermediate Concepts (13–24)</h4>
+          <p>Data structures & functions.</p>
+          <a class="pill" href="PythonKids_Part2_13-24_RTL_v2.ipynb" download>Download Notebook 2</a>
+        </div>
+        <div class="linkcard">
+          <h4>Part 3: Algorithms & Simulation (25–36)</h4>
+          <p>Problem solving, games, and modeling.</p>
+          <a class="pill" href="PythonKids_Part3_25-36_RTL_v2.ipynb" download>Download Notebook 3</a>
+        </div>
+      
+        <div class="linkcard">
+          <h4>Full Python TirotirPy</h4>
+          <p>Compact, rephrased 1‑page reference with search & copy.</p>
+          <a class="pill" href="Python_TirotirPy_Combined_EN.html">Open TirotirPy</a>
+        </div>
+        
+      </div>
+    </section>
+
+    <section class="glass">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search in cheat sheet (e.g., strings, list, if, function)">
+        <select id="filter">
+          <option value="">All categories</option>
+          <option>Basics</option>
+          <option>Strings</option>
+          <option>List</option>
+          <option>Dict</option>
+          <option>Set</option>
+          <option>Tuple</option>
+          <option>Condition</option>
+          <option>Loops</option>
+          <option>Function</option>
+          <option>List Comp.</option>
+          <option>Exceptions</option>
+          <option>Files</option>
+          <option>Modules</option>
+          <option>Time</option>
+          <option>OOP</option>
+          <option>Tools</option>
+        </select>
+      </div>
+      <div id="cards" class="grid grid-3" style="padding: 12px;">
+        
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>Variable &amp; print</h3>
+        <p>Store values and print multiple items.</p>
+      </div>
+      <pre><code>x = 5
+y = &#x27;hello&#x27;
+print(x, y)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>Simple input</h3>
+        <p>Read a value from user.</p>
+      </div>
+      <pre><code>name = input(&#x27;Name? &#x27;)
+print(&#x27;Hello&#x27;, name)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Strings">
+      <div class="card-header">
+        <span class="tag">Strings</span>
+        <h3>Concat &amp; repeat</h3>
+        <p>Use + and * on strings.</p>
+      </div>
+      <pre><code>s = &#x27;py&#x27;
+print(s + &#x27;thon&#x27;)
+print(s * 3)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="List">
+      <div class="card-header">
+        <span class="tag">List</span>
+        <h3>Slice &amp; append</h3>
+        <p>Slice and append items.</p>
+      </div>
+      <pre><code>a = [1,2,3,4]
+print(a[1:3])
+a.append(5)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Dict">
+      <div class="card-header">
+        <span class="tag">Dict</span>
+        <h3>Lookup &amp; add</h3>
+        <p>Key/Value store.</p>
+      </div>
+      <pre><code>d = {&#x27;ali&#x27;:12}
+d[&#x27;sara&#x27;] = 11
+print(d[&#x27;ali&#x27;])</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Set">
+      <div class="card-header">
+        <span class="tag">Set</span>
+        <h3>No duplicates</h3>
+        <p>Unique items only.</p>
+      </div>
+      <pre><code>s = {1,2,2,3}
+s.add(4)
+print(len(s))</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Tuple">
+      <div class="card-header">
+        <span class="tag">Tuple</span>
+        <h3>Immutable pair</h3>
+        <p>Fixed position.</p>
+      </div>
+      <pre><code>pt = (3,4)
+print(pt[0])</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Condition">
+      <div class="card-header">
+        <span class="tag">Condition</span>
+        <h3>if/elif/else</h3>
+        <p>Three-way condition.</p>
+      </div>
+      <pre><code>x=7
+if x&gt;10: print(&#x27;big&#x27;)
+elif x==7: print(&#x27;lucky&#x27;)
+else: print(&#x27;small&#x27;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Loops">
+      <div class="card-header">
+        <span class="tag">Loops</span>
+        <h3>for &amp; while</h3>
+        <p>Two loop styles.</p>
+      </div>
+      <pre><code>for i in range(3): print(i)
+
+j=3
+while j&gt;0:
+    print(j); j-=1</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Function">
+      <div class="card-header">
+        <span class="tag">Function</span>
+        <h3>def &amp; return</h3>
+        <p>Functions with outputs.</p>
+      </div>
+      <pre><code>def add(a,b):
+    return a+b
+print(add(2,3))</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="List Comp.">
+      <div class="card-header">
+        <span class="tag">List Comp.</span>
+        <h3>Quick transform</h3>
+        <p>Build a new list.</p>
+      </div>
+      <pre><code>nums=[1,2,3]
+sq=[x*x for x in nums]
+print(sq)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Exceptions">
+      <div class="card-header">
+        <span class="tag">Exceptions</span>
+        <h3>try/except</h3>
+        <p>Handle errors.</p>
+      </div>
+      <pre><code>try:
+    a=int(&#x27;12a&#x27;)
+except ValueError:
+    print(&#x27;bad input&#x27;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Files">
+      <div class="card-header">
+        <span class="tag">Files</span>
+        <h3>Write/Read</h3>
+        <p>Simple file I/O.</p>
+      </div>
+      <pre><code>open(&#x27;t.txt&#x27;,&#x27;w&#x27;,encoding=&#x27;utf-8&#x27;).write(&#x27;hello&#x27;)
+print(open(&#x27;t.txt&#x27;,&#x27;r&#x27;,encoding=&#x27;utf-8&#x27;).read())</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>math / random</h3>
+        <p>Useful libraries.</p>
+      </div>
+      <pre><code>import math, random
+print(math.sqrt(16))
+print(random.randint(1,6))</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Time">
+      <div class="card-header">
+        <span class="tag">Time</span>
+        <h3>sleep</h3>
+        <p>Pause execution.</p>
+      </div>
+      <pre><code>import time
+print(&#x27;3...&#x27;); time.sleep(1)
+print(&#x27;Go!&#x27;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="OOP">
+      <div class="card-header">
+        <span class="tag">OOP</span>
+        <h3>Simple class</h3>
+        <p>Class and method.</p>
+      </div>
+      <pre><code>class Dog:
+    def __init__(self,n): self.n=n
+    def bark(self): print(&#x27;woof&#x27;, self.n)
+Dog(&#x27;Rex&#x27;).bark()</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Strings">
+      <div class="card-header">
+        <span class="tag">Strings</span>
+        <h3>f-strings</h3>
+        <p>Readable formatting.</p>
+      </div>
+      <pre><code>name=&#x27;Sara&#x27;
+age=11
+print(f&#x27;{name} is {age}&#x27;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Tools">
+      <div class="card-header">
+        <span class="tag">Tools</span>
+        <h3>enumerate</h3>
+        <p>Index your loop.</p>
+      </div>
+      <pre><code>items=[&#x27;a&#x27;,&#x27;b&#x27;]
+for i,x in enumerate(items,1):
+    print(i,x)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Tools">
+      <div class="card-header">
+        <span class="tag">Tools</span>
+        <h3>zip</h3>
+        <p>Parallel iteration.</p>
+      </div>
+      <pre><code>a=[1,2]; b=[&#x27;one&#x27;,&#x27;two&#x27;]
+for x,y in zip(a,b):
+    print(x,y)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+    <div class="card" data-cat="Tools">
+      <div class="card-header">
+        <span class="tag">Tools</span>
+        <h3>map/filter</h3>
+        <p>Transform &amp; filter.</p>
+      </div>
+      <pre><code>nums=[1,2,3,4]
+evens=list(filter(lambda x:x%2==0, nums))
+print(evens)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy code</button>
+    </div>
+    
+      
+        <div class="linkcard">
+          <h4>Full Python TirotirPy</h4>
+          <p>Compact, rephrased 1‑page reference with search & copy.</p>
+          <a class="pill" href="Python_TirotirPy_Combined_EN.html">Open TirotirPy</a>
+        </div>
+        
+      </div>
+    
+    <div class="card" data-cat="Control Flow">
+      <div class="card-header">
+        <span class="tag">Control Flow</span>
+        <h3>While loop</h3>
+        <p>Repeat a block while a condition is True. Make sure the condition changes!</p>
+      </div>
+      <pre><code>n = 5
+while n &gt; 0:
+    print(n)
+    n -= 1
+print(&quot;Blast off!&quot;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Basics">
+      <div class="card-header">
+        <span class="tag">Basics</span>
+        <h3>print() tips &amp; types</h3>
+        <p>Control separators and line endings; inspect variable types.</p>
+      </div>
+      <pre><code>print(&quot;A&quot;,&quot;B&quot;,&quot;C&quot;, sep=&quot;-&quot;)      # A-B-C
+print(&quot;no newline...&quot;, end=&quot;&quot;)
+print(&quot; then newline&quot;)
+x = 3.14
+print(type(x))               # &lt;class &#x27;float&#x27;&gt;
+print(isinstance(x, float))  # True</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>colorama — colored terminal</h3>
+        <p>Windows-friendly ANSI colors. pip install colorama</p>
+      </div>
+      <pre><code>from colorama import init, Fore, Style
+init(autoreset=True)
+print(Fore.GREEN + &quot;OK&quot;)
+print(Fore.RED + Style.BRIGHT + &quot;ERROR&quot;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>termcolor — quick colors</h3>
+        <p>Minimal coloring helpers. pip install termcolor</p>
+      </div>
+      <pre><code>from termcolor import colored, cprint
+print(colored(&quot;hello&quot;, &quot;yellow&quot;, &quot;on_blue&quot;, attrs=[&quot;bold&quot;]))
+cprint(&quot;warning!&quot;, &quot;red&quot;)</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>pyttsx3 — text to speech (offline)</h3>
+        <p>Works offline on most desktops. pip install pyttsx3</p>
+      </div>
+      <pre><code>import pyttsx3
+engine = pyttsx3.init()
+engine.say(&quot;Hello from Python!&quot;)
+engine.runAndWait()</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>turtle — simple graphics</h3>
+        <p>Great for kids: forward/turn drawing. (Needs GUI environment)</p>
+      </div>
+      <pre><code>import turtle as t
+for _ in range(4):
+    t.forward(80); t.left(90)
+t.done()</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    
+    <div class="card" data-cat="Modules">
+      <div class="card-header">
+        <span class="tag">Modules</span>
+        <h3>tkinter — tiny GUI</h3>
+        <p>Built-in GUI toolkit. (Needs desktop environment)</p>
+      </div>
+      <pre><code>import tkinter as tk
+root = tk.Tk()
+tk.Label(root, text=&quot;Hello, GUI!&quot;).pack()
+tk.Button(root, text=&quot;Close&quot;, command=root.destroy).pack()
+root.mainloop()</code></pre>
+      <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+    </div>
+    </section>
+  </div>
+
+  <footer class="wrap">© Tirotir AI — Hoosh Masnooe · tirotir.ir</footer>
+
+<script>
+  const q = document.getElementById('search');
+  const f = document.getElementById('filter');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  function applyFilter() {
+    const text = (q.value || '').toLowerCase();
+    const cat = (f.value || '').toLowerCase();
+    cards.forEach(c => {
+      const hay = (c.innerText || '').toLowerCase();
+      const okText = !text || hay.includes(text);
+      const okCat = !cat || (c.dataset.cat || '').toLowerCase() === cat;
+      c.style.display = (okText && okCat) ? '' : 'none';
+    });
+  }
+  q.addEventListener('input', applyFilter);
+  f.addEventListener('change', applyFilter);
+  function copyCode(btn) {
+    const code = btn.parentElement.querySelector('pre code').innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.innerText = 'Copied!';
+      setTimeout(() => btn.innerText = 'Copy code', 1200);
+    }).catch(() => alert('Copy failed.'));
+  }
+</script>
+</body>
+</html>
