@@ -59,6 +59,13 @@
       </div>
     </header>
 
+    <div class="tabs">
+      <button class="tab-btn" data-tab="kids">Kids Cheatsheet Cards</button>
+      <button class="tab-btn" data-tab="quickref">QuickRef Cards</button>
+      <button class="tab-btn active" data-tab="ultimate">Ultimate Reference</button>
+    </div>
+
+
     <section class="glass">
       <div class="links">
         <div class="linkcard">
@@ -87,6 +94,42 @@
 
     </section>
 
+    </section>
+
+    
+    <section id="panel-kids" class="panel">
+      <div class="toolbar">
+        <input id="search-kids" type="search" placeholder="Search Kids (e.g., strings, list, if)">
+        <select id="filter-kids">
+          <option value="">All categories</option>
+          <option>Basics</option><option>Strings</option><option>List</option>
+          <option>Dict</option><option>Set</option><option>Tuple</option>
+          <option>Condition</option><option>Loops</option><option>Function</option>
+          <option>List Comp.</option><option>Exceptions</option><option>Files</option>
+          <option>Modules</option><option>Time</option><option>OOP</option><option>Tools</option>
+        </select>
+      </div>
+      <section class="grid" id="cards-kids">
+        <div class="card"><div class="card-header"><h3>No Kids cards found</h3><p>Add dashboard HTML.</p></div></div>
+      </section>
+    </section>
+
+    
+    <section id="panel-quickref" class="panel">
+      <div class="toolbar">
+        <input id="search-qref" type="search" placeholder="Search QuickRef (e.g., heapq, f-string, deque)">
+        <select id="filter-qref">
+          <option value="">All categories</option>
+          <option>Basics</option><option>Strings</option><option>Lists</option>
+          <option>Dict</option><option>Set</option><option>Tuple</option>
+          <option>Control Flow</option><option>Functions</option><option>Files</option>
+          <option>Operators</option><option>Modules</option><option>Data Structures</option>
+          <option>Exceptions</option><option>Advanced</option><option>OOP</option>
+        </select>
+      </div>
+      <section class="grid" id="cards-qref">
+        <div class="card"><div class="card-header"><h3>No QuickRef cards found</h3><p>Add quickref HTML.</p></div></div>
+      </section>
     </section>
 
     <footer>© Tirotir AI — Hoosh Masnooe · tirotir.ir
@@ -1320,6 +1363,64 @@ print(&quot;LOG&quot;, file=sys.stderr)</code></pre>
   }
   wireCopyButtons('panel-kids');
   wireCopyButtons('panel-quickref');
+makeFilter('search-kids','filter-kids','cards-kids');
+makeFilter('search-qref','filter-qref','cards-qref');
+makeFilter('search-ult','filter-ult','cards-ult');
+
+// --- Robust copy support (idempotent) ---
+(function(){
+  if (typeof window.copyCode !== 'function') {
+    window.copyCode = function(btn){
+      try {
+        var root = btn.closest('.card') || btn.parentElement || document;
+        var codeEl = root.querySelector('pre:not(.output) code') || root.querySelector('code') || root.querySelector('pre');
+        var text = codeEl ? (codeEl.innerText || codeEl.textContent || '') : '';
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function(){
+            btn.innerText = 'Copied!';
+            setTimeout(function(){ btn.innerText = 'Copy'; }, 1200);
+          }).catch(function(){
+            fallbackCopy(text, btn, codeEl || root);
+          });
+        } else {
+          fallbackCopy(text, btn, codeEl || root);
+        }
+      } catch (e) {
+        fallbackCopy('', btn, btn.parentElement || document.body);
+      }
+    };
+  }
+  function fallbackCopy(text, btn, node){
+    try {
+      if (!text && node) {
+        var r = document.createRange();
+        var sel = window.getSelection();
+        r.selectNodeContents(node);
+        sel.removeAllRanges(); sel.addRange(r);
+        document.execCommand('copy');
+        sel.removeAllRanges();
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text || '';
+        ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+      }
+    } catch (_) {}
+    if (btn) { btn.innerText = 'Copied!'; setTimeout(function(){ btn.innerText = 'Copy'; }, 1200); }
+  }
+  // Delegated handler in case inline onclick is blocked/missing
+  if (!window.__copyDelegationBound) {
+    document.addEventListener('click', function(e){
+      var t = e.target;
+      if (t && t.classList && t.classList.contains('copy-btn')) {
+        window.copyCode(t);
+      }
+    });
+    window.__copyDelegationBound = true;
+  }
+})();
+
 </script>
 </body>
 </html>
